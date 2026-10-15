@@ -11,8 +11,8 @@ void arraylist_destroy(arraylist *list);
 
 typedef struct listnode {
     int item;
-    listnode *next;
-    listnode *previous;
+    struct listnode *next;
+    struct listnode *previous;
 } listnode;
 
 typedef struct linkedlist {
