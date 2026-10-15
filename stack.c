@@ -51,9 +51,15 @@ void stack_push(stack *stack, int item) {
 }
 
 void stack_print(stack *stack) {
-
+    printf("[");
+    for (int i = 0; i < stack->count; i++) {
+        printf("%i", stack->array[i]);
+        if (i != stack->count - 1) printf(", ");
+    }
+    printf("]");
 }
 
 void stack_destroy(stack *stack) {
-
+    free(stack->array);
+    free(stack);
 }
