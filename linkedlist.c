@@ -37,26 +37,30 @@ void linkedlist_add(linkedlist *list, int item) {
     list->count++;
 }
 
+void removenode(linkedlist *list, listnode *node)
+{
+    if (node->previous != NULL) {
+        node->previous->next = node->next;
+    }
+    else {
+        list->first = node->next;
+    }
+
+    if (node->next != NULL) {
+        node->next->previous = node->previous;
+    }
+    else {
+        list->last = node->previous;
+    }
+
+    free(node);
+    list->count--;
+}
+
 int linkedlist_remove(linkedlist *list, int item) {
     for (listnode *temp = list->first; temp != NULL; temp = temp->next) {
         if (temp->item != item) continue;
-        
-        if (temp->previous != NULL) {
-            temp->previous->next = temp->next;
-        }
-        else {
-            list->first = temp->next;
-        }
-
-        if (temp->next != NULL) {
-            temp->next->previous = temp->previous;
-        }
-        else {
-            list->last = temp->previous;
-        }
-
-        free(temp);
-        list->count--;
+        removenode(list, temp);
         return TRUE;
     }
 
@@ -66,23 +70,7 @@ int linkedlist_remove(linkedlist *list, int item) {
 int linkedlist_removelast(linkedlist *list, int item) {
     for (listnode *temp = list->last; temp != NULL; temp = temp->previous) {
         if (temp->item != item) continue;
-        
-        if (temp->previous != NULL) {
-            temp->previous->next = temp->next;
-        }
-        else {
-            list->first = temp->next;
-        }
-
-        if (temp->next != NULL) {
-            temp->next->previous = temp->previous;
-        }
-        else {
-            list->last = temp->previous;
-        }
-
-        free(temp);
-        list->count--;
+        removenode(list, temp);
         return TRUE;
     }
 
@@ -94,23 +82,7 @@ int linkedlist_removeall(linkedlist *list, int item) {
 
     for (listnode *temp = list->last; temp != NULL; temp = temp->previous) {
         if (temp->item != item) continue;
-        
-        if (temp->previous != NULL) {
-            temp->previous->next = temp->next;
-        }
-        else {
-            list->first = temp->next;
-        }
-
-        if (temp->next != NULL) {
-            temp->next->previous = temp->previous;
-        }
-        else {
-            list->last = temp->previous;
-        }
-
-        free(temp);
-        list->count--;
+        removenode(list, temp);
     }
 
     return count;
