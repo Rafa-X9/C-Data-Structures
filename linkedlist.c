@@ -48,5 +48,10 @@ void linkedlist_print(const linkedlist *list) {
 }
 
 void linkedlist_destroy(linkedlist *list) {
-
+    for (listnode *temp = list->first; temp != NULL;) {
+        listnode *next = temp->next;
+        free(temp);
+        temp = next;
+    }
+    free(list);
 }
