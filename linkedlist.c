@@ -90,7 +90,30 @@ int linkedlist_removelast(linkedlist *list, int item) {
 }
 
 int linkedlist_removeall(linkedlist *list, int item) {
-    
+    int count = 0;
+
+    for (listnode *temp = list->last; temp != NULL; temp = temp->previous) {
+        if (temp->item != item) continue;
+        
+        if (temp->previous != NULL) {
+            temp->previous->next = temp->next;
+        }
+        else {
+            list->first = temp->next;
+        }
+
+        if (temp->next != NULL) {
+            temp->next->previous = temp->previous;
+        }
+        else {
+            list->last = temp->previous;
+        }
+
+        free(temp);
+        list->count--;
+    }
+
+    return count;
 }
 
 void linkedlist_print(const linkedlist *list) {
