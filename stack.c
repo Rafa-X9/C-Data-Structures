@@ -22,6 +22,7 @@ void stack_ensurecapacity(stack *stack) {
     if (stack->count < stack->capacity) return;
     int *newArray = realloc(stack->array, stack->capacity * 2 * sizeof(int));
     if (newArray == NULL) return;
+    stack->array = newArray;
     stack->capacity *= 2;
 }
 
