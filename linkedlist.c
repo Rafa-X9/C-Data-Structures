@@ -38,7 +38,29 @@ void linkedlist_add(linkedlist *list, int item) {
 }
 
 int linkedlist_remove(linkedlist *list, int item) {
+    for (listnode *temp = list->first; temp != NULL; temp = temp->next) {
+        if (temp->item != item) continue;
+        
+        if (temp->previous != NULL) {
+            temp->previous->next = temp->next;
+        }
+        else {
+            list->first = temp->next;
+        }
 
+        if (temp->next != NULL) {
+            temp->next->previous = temp->previous;
+        }
+        else {
+            list->last = temp->previous;
+        }
+        
+        free(temp);
+        list->count--;
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 int linkedlist_removelast(linkedlist *list, int item) {

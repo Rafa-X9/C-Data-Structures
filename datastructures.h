@@ -1,3 +1,6 @@
+
+enum booleans { FALSE = 0, TRUE = 1 };
+
 typedef struct arraylist {
     int *array;
     int count;
