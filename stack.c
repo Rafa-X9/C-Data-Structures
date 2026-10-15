@@ -33,8 +33,10 @@ int stack_peek(stack *stack) {
 
 }
 
-int stack_push(stack *stack) {
-
+void stack_push(stack *stack, int item) {
+    ensure_capacity(stack);
+    stack->array[stack->count] = item;
+    stack->count++;
 }
 
 void stack_print(stack *stack) {

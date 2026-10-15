@@ -41,6 +41,6 @@ typedef struct stack {
 stack *stack_create();
 int stack_pop(stack *stack);
 int stack_peek(stack *stack);
-int stack_push(stack *stack);
+void stack_push(stack *stack, int item);
 void stack_print(stack *stack);
 void stack_destroy(stack *stack);
