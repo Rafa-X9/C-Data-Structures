@@ -23,5 +23,8 @@ typedef struct linkedlist {
 
 linkedlist *linkedlist_create();
 void linkedlist_add(linkedlist *list, int item);
+int linkedlist_remove(linkedlist *list, int item);
+int linkedlist_removelast(linkedlist *list, int item);
+int linkedlist_removeall(linkedlist *list, int item);
 void linkedlist_print(const linkedlist *list);
 void linkedlist_destroy(linkedlist *list);
