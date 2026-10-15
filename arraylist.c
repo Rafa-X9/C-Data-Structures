@@ -18,7 +18,7 @@ arraylist *arraylist_create() {
     return list;
 }
 
-void ensure_capacity(arraylist *list) {
+void arraylist_ensurecapacity(arraylist *list) {
     if (list->count < list->capacity) return;
 
     int *newarray = realloc(list->array, list->capacity * 2 * sizeof(int));
@@ -31,7 +31,7 @@ void ensure_capacity(arraylist *list) {
 void arraylist_add(arraylist *list, int item) {
     list->array[list->count] = item;
     list->count++;
-    ensure_capacity(list);
+    arraylist_ensurecapacity(list);
 }
 
 void arraylist_print(const arraylist *list) {

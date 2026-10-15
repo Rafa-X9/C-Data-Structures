@@ -18,7 +18,7 @@ stack *stack_create() {
     return stack;
 }
 
-void ensure_capacity(stack *stack) {
+void stack_ensurecapacity(stack *stack) {
     if (stack->count < stack->capacity) return;
     int *newArray = realloc(stack->array, stack->capacity * 2 * sizeof(int));
     if (newArray == NULL) return;
@@ -45,7 +45,7 @@ int stack_peek(stack *stack) {
 }
 
 void stack_push(stack *stack, int item) {
-    ensure_capacity(stack);
+    stack_ensurecapacity(stack);
     stack->array[stack->count] = item;
     stack->count++;
 }
