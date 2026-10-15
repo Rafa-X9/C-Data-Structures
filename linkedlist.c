@@ -32,6 +32,7 @@ void linkedlist_add(linkedlist *list, int item) {
     last->item = item;
     last->next = NULL;
     last->previous = list->last;
+    list->last->next = last;
     list->last = last;
     list->count++;
 }
