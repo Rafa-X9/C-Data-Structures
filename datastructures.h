@@ -34,6 +34,7 @@ void linkedlist_destroy(linkedlist *list);
 
 typedef struct stack {
     int *array;
+    int capacity;
     int count;
 } stack;
 

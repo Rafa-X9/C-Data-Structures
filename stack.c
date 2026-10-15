@@ -14,6 +14,7 @@ stack *stack_create() {
 
     stack->array = array;
     stack->count = 0;
+    stack->capacity = 0;
     return stack;
 }
 
