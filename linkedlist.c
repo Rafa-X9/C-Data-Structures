@@ -13,7 +13,27 @@ linkedlist *linkedlist_create() {
 }
 
 void linkedlist_add(linkedlist *list, int item) {
+    if (list->first == NULL) {
+        listnode *first = malloc(sizeof(listnode));
+        if (first == NULL) return;
 
+        first->item = item;
+        first->next = NULL;
+        first->previous = NULL;
+        
+        list->first = first;
+        list->last = first;
+        list->count++;
+        return;
+    }
+
+    listnode *last = malloc(sizeof(listnode));
+    if (last == NULL) return;
+    last->item = item;
+    last->next = NULL;
+    last->previous = list->last;
+    list->last = last;
+    list->count++;
 }
 
 void linkedlist_print(const linkedlist *list) {
