@@ -54,7 +54,7 @@ int linkedlist_remove(linkedlist *list, int item) {
         else {
             list->last = temp->previous;
         }
-        
+
         free(temp);
         list->count--;
         return TRUE;
@@ -64,7 +64,29 @@ int linkedlist_remove(linkedlist *list, int item) {
 }
 
 int linkedlist_removelast(linkedlist *list, int item) {
+    for (listnode *temp = list->last; temp != NULL; temp = temp->previous) {
+        if (temp->item != item) continue;
+        
+        if (temp->previous != NULL) {
+            temp->previous->next = temp->next;
+        }
+        else {
+            list->first = temp->next;
+        }
 
+        if (temp->next != NULL) {
+            temp->next->previous = temp->previous;
+        }
+        else {
+            list->last = temp->previous;
+        }
+
+        free(temp);
+        list->count--;
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 int linkedlist_removeall(linkedlist *list, int item) {
