@@ -37,7 +37,14 @@ void linkedlist_add(linkedlist *list, int item) {
 }
 
 void linkedlist_print(const linkedlist *list) {
+    printf("[");
 
+    for (listnode *temp = list->first; temp != NULL; temp = temp->next) {
+        printf("%i", temp->item);
+        if (temp->next != NULL) printf(", ");
+    }
+
+    printf("]");
 }
 
 void linkedlist_destroy(linkedlist *list) {
