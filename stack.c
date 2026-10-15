@@ -18,6 +18,13 @@ stack *stack_create() {
     return stack;
 }
 
+void ensure_capacity(stack *stack) {
+    if (stack->count < stack->capacity) return;
+    int *newArray = realloc(stack->array, stack->capacity * 2 * sizeof(int));
+    if (newArray == NULL) return;
+    stack->capacity *= 2;
+}
+
 int stack_pop(stack *stack) {
 
 }
