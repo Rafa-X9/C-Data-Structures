@@ -26,11 +26,22 @@ void ensure_capacity(stack *stack) {
 }
 
 int stack_pop(stack *stack) {
-
+    if (stack->count == 0) {
+        perror("Error: tried to pop from an empty stack.");
+        return 0;
+    }
+    int item = stack->array[stack->count - 1];
+    stack->count--;
+    return item;
 }
 
 int stack_peek(stack *stack) {
-
+    if (stack->count == 0) {
+        perror("Error: tried to peek from an empty stack.");
+        return 0;
+    }
+    int item = stack->array[stack->count - 1];
+    return item;
 }
 
 void stack_push(stack *stack, int item) {
