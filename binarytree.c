@@ -18,6 +18,14 @@ void binarytree_print(binarytree *tree) {
 
 }
 
-void binarytree_destroy(binarytree *tree) {
+void treenode_destroy(treenode *node) {
+    if (node == NULL) return;
+    treenode_destroy(node->left);
+    treenode_destroy(node->right);
+    free(node);
+}
 
+void binarytree_destroy(binarytree *tree) {
+    treenode_destroy(tree->root);
+    free(tree);
 }
