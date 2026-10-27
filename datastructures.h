@@ -31,3 +31,19 @@ int linkedlist_removelast(linkedlist *list, int item);
 int linkedlist_removeall(linkedlist *list, int item);
 void linkedlist_print(const linkedlist *list);
 void linkedlist_destroy(linkedlist *list);
+
+typedef struct treenode {
+    int item;
+    struct treenode *left;
+    struct treenode *right;
+} treenode;
+
+typedef struct binarytree {
+    treenode *root;
+    int count;
+} binarytree;
+
+binarytree *binarytree_create();
+void binarytree_add(binarytree *tree);
+void binarytree_print(binarytree *tree);
+void binarytree_destroy(binarytree *tree);
