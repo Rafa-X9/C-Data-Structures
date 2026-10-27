@@ -31,16 +31,3 @@ int linkedlist_removelast(linkedlist *list, int item);
 int linkedlist_removeall(linkedlist *list, int item);
 void linkedlist_print(const linkedlist *list);
 void linkedlist_destroy(linkedlist *list);
-
-typedef struct stack {
-    int *array;
-    int capacity;
-    int count;
-} stack;
-
-stack *stack_create();
-int stack_pop(stack *stack);
-int stack_peek(stack *stack);
-void stack_push(stack *stack, int item);
-void stack_print(stack *stack);
-void stack_destroy(stack *stack);
