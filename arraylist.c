@@ -21,7 +21,7 @@ arraylist *arraylist_create() {
 void arraylist_ensurecapacity(arraylist *list) {
     if (list->count < list->capacity) return;
 
-    int *newarray = realloc(list->array, list->capacity * 2 * sizeof(int));
+    int *newarray = realloc(list->array, (unsigned)list->capacity * (unsigned)2 * sizeof(int));
     if (newarray == NULL) return;
 
     list->array = newarray;
