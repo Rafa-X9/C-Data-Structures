@@ -44,6 +44,6 @@ typedef struct binarytree {
 } binarytree;
 
 binarytree *binarytree_create();
-void binarytree_add(binarytree *tree);
+void binarytree_add(binarytree *tree, int item);
 void binarytree_print(binarytree *tree);
 void binarytree_destroy(binarytree *tree);
