@@ -11,43 +11,24 @@ binarytree *binarytree_create() {
 }
 
 void binarytree_add(binarytree *tree, int item) {
-    if (tree->root == NULL) {
-        treenode *root = malloc(sizeof(treenode));
-        root->item = item;
-        root->left = NULL;
-        root->right = NULL;
-        tree->root = root;
-        return;
-    }
+    treenode **nullnode = &tree->root;
 
-    for (treenode *node = tree->root; node != NULL;) {
-        if (item < node->item) {
-            if (node->left != NULL) {
-                node = node->left;
-                continue;
-            }
-
-            treenode *newnode = malloc(sizeof(treenode));
-            newnode->item = item;
-            newnode->left = NULL;
-            newnode->right = NULL;
-            node->left = newnode;
-            return;
+    while (*nullnode != NULL) {
+        if (item < (*nullnode)->item) {
+            nullnode = &(*nullnode)->left;
         }
         else {
-            if (node->right != NULL) {
-                node = node->right;
-                continue;
-            }
-
-            treenode *newnode = malloc(sizeof(treenode));
-            newnode->item = item;
-            newnode->left = NULL;
-            newnode->right = NULL;
-            node->right = newnode;
-            return;
+            nullnode = &(*nullnode)->right;
         }
     }
+
+    //nullnode points to a pointer to the null node
+    treenode *newnode = malloc(sizeof(treenode));
+    newnode->item = item;
+    newnode->left = NULL;
+    newnode->right = NULL;
+    *nullnode = newnode;
+    tree->count++;
 }
 
 void treenode_print(treenode *node) {
