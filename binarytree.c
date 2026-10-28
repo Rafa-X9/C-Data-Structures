@@ -50,8 +50,16 @@ void binarytree_add(binarytree *tree, int item) {
     }
 }
 
-void binarytree_print(binarytree *tree) {
+void treenode_print(treenode *node) {
+    if (node == NULL) return;
+    treenode_print(node->left);
+    printf("%i ", node->item);
+    treenode_print(node->right);
+}
 
+void binarytree_print(binarytree *tree) {
+    treenode_print(tree->root);
+    printf("\n");
 }
 
 void treenode_destroy(treenode *node) {
